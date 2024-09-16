@@ -26,21 +26,21 @@ class PublicDriverViewsTests(TestCase):
         response = self.client.get(CREATE_URL)
 
         self.assertNotEqual(response.status_code, 200)
-        self.assertRedirects(response, f"{reverse("login")}?next={CREATE_URL}")
+        self.assertRedirects(response, f'{reverse("login")}?next={CREATE_URL}')
 
     def test_license_update_view_login_required_and_redirect(self):
         response = self.client.get(LICENSE_UPDATE_URL)
 
         self.assertNotEqual(response.status_code, 200)
         self.assertRedirects(
-            response, f"{reverse("login")}?next={LICENSE_UPDATE_URL}"
+            response, f'{reverse("login")}?next={LICENSE_UPDATE_URL}'
         )
 
     def test_delete_view_login_required_and_redirect(self):
         response = self.client.get(DELETE_URL)
 
         self.assertNotEqual(response.status_code, 200)
-        self.assertRedirects(response, f"{reverse("login")}?next={DELETE_URL}")
+        self.assertRedirects(response, f'{reverse("login")}?next={DELETE_URL}')
 
 
 class PrivateDriverViewsTests(TestCase):

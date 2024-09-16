@@ -26,19 +26,19 @@ class PublicManufacturerViewsTests(TestCase):
         response = self.client.get(CREATE_URL)
 
         self.assertNotEqual(response.status_code, 200)
-        self.assertRedirects(response, f"{reverse("login")}?next={CREATE_URL}")
+        self.assertRedirects(response, f'{reverse("login")}?next={CREATE_URL}')
 
     def test_update_view_login_required_and_redirect(self):
         response = self.client.get(UPDATE_URL)
 
         self.assertNotEqual(response.status_code, 200)
-        self.assertRedirects(response, f"{reverse("login")}?next={UPDATE_URL}")
+        self.assertRedirects(response, f'{reverse("login")}?next={UPDATE_URL}')
 
     def test_delete_view_login_required_and_redirect(self):
         response = self.client.get(DELETE_URL)
 
         self.assertNotEqual(response.status_code, 200)
-        self.assertRedirects(response, f"{reverse("login")}?next={DELETE_URL}")
+        self.assertRedirects(response, f'{reverse("login")}?next={DELETE_URL}')
 
 
 class PrivateManufacturerViewsTests(TestCase):
