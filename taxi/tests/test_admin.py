@@ -50,7 +50,7 @@ class AdminSiteTests(TestCase):
         self.assertNotContains(res, "Mitsubishi Lancer")
 
     def test_car_filter_by_manufacturer_only_on_page_and_works(self):
-        filter_ = f"?manufacturer__id__exact=7"
+        filter_ = "?manufacturer__id__exact=7"
         url = reverse("admin:taxi_car_changelist") + filter_
 
         response = self.client.get(url)

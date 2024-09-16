@@ -15,7 +15,8 @@ class DriverModelTests(TestCase):
         driver = get_user_model().objects.get(id=1)
 
         self.assertEqual(
-            str(driver), f"{driver.username} ({driver.first_name} {driver.last_name})"
+            str(driver),
+            f"{driver.username} ({driver.first_name} {driver.last_name})"
         )
 
     def test_get_absolute_url_should_return_correct_url(self):
@@ -41,4 +42,3 @@ class DriverModelTests(TestCase):
         driver = get_user_model().objects.get(id=1)
 
         self.assertEqual(driver._meta.verbose_name_plural, "drivers")
-

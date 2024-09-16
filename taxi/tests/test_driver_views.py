@@ -32,7 +32,9 @@ class PublicDriverViewsTests(TestCase):
         response = self.client.get(LICENSE_UPDATE_URL)
 
         self.assertNotEqual(response.status_code, 200)
-        self.assertRedirects(response, f"{reverse("login")}?next={LICENSE_UPDATE_URL}")
+        self.assertRedirects(
+            response, f"{reverse("login")}?next={LICENSE_UPDATE_URL}"
+        )
 
     def test_delete_view_login_required_and_redirect(self):
         response = self.client.get(DELETE_URL)
@@ -88,10 +90,13 @@ class PrivateDriverViewsTests(TestCase):
         custom_driver = get_user_model().objects.last()
 
         self.assertRedirects(
-            response, reverse("taxi:driver-detail", kwargs={"pk": custom_driver.pk})
+            response,
+            reverse("taxi:driver-detail", kwargs={"pk": custom_driver.pk})
         )
         self.assertTrue(
-            get_user_model().objects.filter(username="custom_username").exists()
+            get_user_model().objects.filter(
+                username="custom_username"
+            ).exists()
         )
 
     def test_license_update_view(self):

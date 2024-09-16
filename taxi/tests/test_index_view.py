@@ -30,10 +30,15 @@ class PrivateIndexViewTests(TestCase):
         response = self.client.get(INDEX_URL)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context.get("num_drivers"), fixtures.DRIVERS_AMOUNT)
-        self.assertEqual(response.context.get("num_cars"), fixtures.CARS_AMOUNT)
         self.assertEqual(
-            response.context.get("num_manufacturers"), fixtures.MANUFACTURERS_AMOUNT
+            response.context.get("num_drivers"), fixtures.DRIVERS_AMOUNT
+        )
+        self.assertEqual(
+            response.context.get("num_cars"), fixtures.CARS_AMOUNT
+        )
+        self.assertEqual(
+            response.context.get("num_manufacturers"),
+            fixtures.MANUFACTURERS_AMOUNT
         )
 
     def test_num_visits_counter_increase_after_visit(self):

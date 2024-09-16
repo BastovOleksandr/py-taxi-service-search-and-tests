@@ -37,10 +37,10 @@ superuser = [
     {
         "username": "admin",
         "password": "admin_password",
-        "first_name": f"admin_first_name",
-        "last_name": f"admin_last_name",
-        "email": f"admin@email.com",
-        "license_number": f"ADM99999",
+        "first_name": "admin_first_name",
+        "last_name": "admin_last_name",
+        "email": "admin@email.com",
+        "license_number": "ADM99999",
     }
 ]
 
@@ -69,7 +69,9 @@ def fill_db():
     Manufacturer.objects.bulk_create(
         [Manufacturer(**manufacturer) for manufacturer in manufacturers]
     )
-    Car.objects.bulk_create([Car(**car, manufacturer_id=next(seed)) for car in cars])
+    Car.objects.bulk_create(
+        [Car(**car, manufacturer_id=next(seed)) for car in cars]
+    )
 
     for car in Car.objects.order_by("id")[CARS_AMOUNT - len(custom_cars) :]:
         if car.model.startswith("Mitsubishi"):

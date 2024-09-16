@@ -68,33 +68,23 @@ class PrivateCarViewTests(TestCase):
 
     def test_list_view_context_contain_search_by_model_and_it_works(self):
         response = self.client.get(LIST_URL + "?model=i")
-        cars_ = list(
-            response.context.get("car_list").values("model")
-        )
+        cars_ = list(response.context.get("car_list").values("model"))
 
         self.assertIn("search_form", response.context)
         self.assertTrue(len(cars_) == 4)
         self.assertCountEqual(fixtures.custom_cars, cars_)
 
     def test_create_view(self):
-        data = {
-            "model": "custom_car",
-            "manufacturer": 8,
-            "drivers": [1,2,3]
-        }
+        data = {"model": "custom_car", "manufacturer": 8, "drivers": [1, 2, 3]}
 
         response = self.client.post(CREATE_URL, data)
 
         self.assertRedirects(response, LIST_URL)
-        self.assertTrue(
-            Car.objects.filter(model="custom_car").exists()
-        )
+        self.assertTrue(Car.objects.filter(model="custom_car").exists())
 
     def test_update_view(self):
         data = {
-            "model": "custom_model",
-            "manufacturer": 8,
-            "drivers": [1, 2, 3]
+            "model": "custom_model", "manufacturer": 8, "drivers": [1, 2, 3]
         }
         before = Car.objects.get(pk=1)
 
