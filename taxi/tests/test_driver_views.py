@@ -20,7 +20,7 @@ class PublicDriverViewsTests(TestCase):
         response = self.client.get(LIST_URL)
 
         self.assertNotEqual(response.status_code, 200)
-        self.assertRedirects(response, f"{reverse("login")}?next={LIST_URL}")
+        self.assertRedirects(response, f'{reverse("login")}?next={LIST_URL}')
 
     def test_create_view_login_required_and_redirect(self):
         response = self.client.get(CREATE_URL)

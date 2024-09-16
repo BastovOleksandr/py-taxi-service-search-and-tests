@@ -11,7 +11,7 @@ class PublicIndexViewTests(TestCase):
     def test_login_required_and_redirect_if_not_authenticated(self):
         response = self.client.get(INDEX_URL)
         self.assertNotEqual(response.status_code, 200)
-        self.assertRedirects(response, f"{reverse("login")}?next=/")
+        self.assertRedirects(response, f'{reverse("login")}?next=/')
 
 
 class PrivateIndexViewTests(TestCase):
